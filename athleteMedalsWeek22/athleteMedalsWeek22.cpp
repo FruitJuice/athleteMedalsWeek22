@@ -41,7 +41,7 @@ void readFile()
 	struct athletes *current = NULL;
 	struct athletes *after = NULL;
 
-	ptr = fopen("C:\\Users\\sndri\\Documents\\athletes.txt", "r");
+	ptr = fopen("athletes.txt", "r");
 
 	while(!feof(ptr))
 	{
