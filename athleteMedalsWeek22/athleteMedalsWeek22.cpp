@@ -12,11 +12,11 @@ void findAthlete(int iyear, char *isport);
 
 struct athletes
 {
-	char *name;
+	char name[25];
 	int age;
-	char *country;
+	char country[35];
 	int year;
-	char *sport;
+	char sport[30];
 	int gold;
 	int silver;
 	int bronze;
@@ -29,7 +29,7 @@ void main(int argc, char *argv[])
 {
 	int year = atoi(argv[1]);
 	char *sport = argv[2];
-	printf("\nName\t\t\tAge\tCountry\t\t#Gold\t\t#Silver\t\t#Bronze\t\t#Total");
+	printf("\nName\t\t\t\tAge\tCountry\t\t#Gold\t\t#Silver\t\t#Bronze\t\t#Total");
 	printf("\n======================================================================\n");
 	readFile();
 	findAthlete(year, sport);
@@ -40,7 +40,7 @@ void readFile()
 	FILE *ptr;
 	char line[200];
 	char *token;
-	char delim[5] = "\t";
+	char delim[2] = "\t";
 	struct athletes *current = NULL;
 	struct athletes *after = NULL;
 
@@ -48,8 +48,7 @@ void readFile()
 
 	while(!feof(ptr))
 	{
-		fgets(line, 200, ptr);
-
+		fgets(line, 199, ptr);
 		if (first == NULL)
 		{
 			first = (struct athletes*) malloc(sizeof(athletes));
