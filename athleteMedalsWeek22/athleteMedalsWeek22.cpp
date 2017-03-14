@@ -23,7 +23,7 @@ struct athletes
 	int total;
 	athletes *next;
 };
-struct athletes *first;
+struct athletes *first = NULL;
 
 void main(int argc, char *argv[])
 {
@@ -58,7 +58,17 @@ void readFile()
 			current = after;
 			after->next = NULL;
 		}
-		fread(current, sizeof(athletes), 1, ptr);
+		fscanf(ptr, "%s\t%d\t%s\t%d\t%s\t%d\t%d\t%d\t%d",
+			current->name,
+			&current->age,
+			current->country,
+			&current->year,
+			current->sport,
+			&current->gold,
+			&current->silver,
+			&current->bronze,
+			&current->total
+			);
 	}
 	fclose(ptr);
 }
