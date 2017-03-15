@@ -12,11 +12,11 @@ void findAthlete(int iyear, char *isport);
 
 struct athletes
 {
-	char name[25];
+	char *name;
 	int age;
-	char country[35];
+	char *country;
 	int year;
-	char sport[30];
+	char *sport;
 	int gold;
 	int silver;
 	int bronze;
@@ -48,7 +48,7 @@ void readFile()
 
 	while(!feof(ptr))
 	{
-		fgets(line, 199, ptr);
+		fgets(line, 200, ptr);
 		if (first == NULL)
 		{
 			first = (struct athletes*) malloc(sizeof(athletes));
@@ -62,11 +62,23 @@ void readFile()
 			current = after;
 			after->next = NULL;
 		}
-		if ((token = strtok(line, delim)) != NULL) strcpy(current->name, token);
+		if ((token = strtok(line, delim)) != NULL)
+		{
+			current->name = (char*)malloc(sizeof(token));
+			strcpy(current->name, token);
+		}
 		if ((token = strtok(NULL, delim)) != NULL) current->age = atoi(token);
-		if ((token = strtok(NULL, delim)) != NULL) strcpy(current->country, token);
+		if ((token = strtok(NULL, delim)) != NULL)
+		{
+			current->country = (char*)malloc(sizeof(token));
+			strcpy(current->country, token);
+		}
 		if ((token = strtok(NULL, delim)) != NULL) current->year = atoi(token);
-		if ((token = strtok(NULL, delim)) != NULL) strcpy(current->sport, token);
+		if ((token = strtok(NULL, delim)) != NULL)
+		{
+			current->sport = (char*)malloc(sizeof(token));
+			strcpy(current->sport, token);
+		}
 		if ((token = strtok(NULL, delim)) != NULL) current->gold = atoi(token);
 		if ((token = strtok(NULL, delim)) != NULL) current->bronze = atoi(token);
 		if ((token = strtok(NULL, delim)) != NULL) current->silver = atoi(token);
